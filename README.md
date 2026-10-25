@@ -1,0 +1,1 @@
+I decided to secure all routes because student records are private and important. If anyone could change or delete data without logging in, outsiders could easily spam, corrupt, or mess up the database. Requiring a login for every action ensures that only verified, trusted users can modify the student directory.
