@@ -11,6 +11,7 @@ app.use(express.json());
 const studentRoutes = require('./routes/students');
 app.use('/api/students', studentRoutes);
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/upload', require('./routes/upload'));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
