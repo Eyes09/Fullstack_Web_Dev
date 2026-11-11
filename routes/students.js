@@ -19,8 +19,7 @@ router.get('/stats/courses', requireAuth, async (req, res) => {
 router.get('/', requireAuth, async (req, res) => {
   try {
     const students = await Student.find()
-      .populate('course', 'courseCode title department -_id')
-      .populate('createdBy', 'email -_id');
+      .populate('course', 'courseCode title department -_id');
     res.json(students);
   } catch (err) {
     res.status(500).json({ error: err.message });
