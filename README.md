@@ -2,7 +2,7 @@
 
 ## Project Description
 
-The Student Directory Application is a React frontend connected to an Express.js and MongoDB backend in a unified monorepo structure[cite: 7]. It allows users to register an account, log in, and view the student directory after successful authentication.
+The Student Directory Application is a React frontend connected to an Express.js and MongoDB backend in a unified monorepo structure. It allows users to register an account, log in, and view the student directory after successful authentication.
 
 The application uses JWT (JSON Web Token) authentication to protect student data and prevent unauthorized access.
 
