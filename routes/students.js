@@ -3,13 +3,28 @@ const express = require('express');
 const router = express.Router();
 const Student = require('../models/Student');
 
+router.get('/stats/courses', requireAuth, async (req, res) => {
+  try {
+    const stats = await Student.aggregate([
+      { $match: { course: { $ne: null } } },
+      { $group: { _id: '$course', totalStudents: { $sum: 1 } } },
+      { $sort: { totalStudents: -1 } }
+    ]);
+    res.json(stats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get('/', requireAuth, async (req, res) => {
-    try {
-        const students = await Student.find();
-        res.json(students);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+  try {
+    const students = await Student.find()
+      .populate('course', 'courseCode title department -_id')
+      .populate('createdBy', 'email -_id');
+    res.json(students);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 router.post('/', requireAuth, async (req, res) => {
@@ -48,4 +63,5 @@ router.delete('/:id', requireAuth, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 module.exports = router;
